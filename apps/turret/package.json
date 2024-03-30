@@ -1,0 +1,22 @@
+{
+  "name": "@turret/control",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "start:watch": "nodemon --inspect=0.0.0.0:9229 .",
+    "build:ts:watch": "tsc --watch --preserveWatchOutput",
+    "build:ts": "tsc",
+    "build": "pnpm run build:ts",
+    "dev": "concurrently pnpm:start:watch pnpm:build:ts:watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "5.4.3",
+    "concurrently": "8.2.2",
+    "nodemon": "3.1.0"
+  }
+}
