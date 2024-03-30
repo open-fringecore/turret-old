@@ -15,8 +15,12 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "5.4.3",
     "concurrently": "8.2.2",
-    "nodemon": "3.1.0"
+    "nodemon": "3.1.0",
+    "typescript": "5.4.3"
+  },
+  "dependencies": {
+    "chokidar": "3.6.0",
+    "execa": "8.0.1"
   }
 }

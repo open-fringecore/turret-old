@@ -1,0 +1,7 @@
+services:
+  turrent:
+    image: turret/turret:latest
+    network_mode: host
+    volumes:
+      - /run/user/1000/docker.sock:/var/run/docker.sock
+      - ./services/:/app/services/

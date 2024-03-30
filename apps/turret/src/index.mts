@@ -1,1 +1,3 @@
-console.log('Hello, Tomato!');
+import chokidar from 'chokidar';
+
+chokidar.watch('./projects/.git');
