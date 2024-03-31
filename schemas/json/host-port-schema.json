@@ -14,7 +14,9 @@
         "description": "The port number"
       }
     },
-    "required": ["host", "port"],
+    "oneOf": [
+        { "required": ["host"] },
+        { "required": ["port"] }
+    ],
     "additionalProperties": false
-  }
-  
+}
