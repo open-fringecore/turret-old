@@ -1,4 +1,5 @@
 import * as http from 'http';
+import {manageDockerCompose} from './controller.mjs';
 
 // Define the port for the server to listen on
 const PORT = 8000;
@@ -10,6 +11,9 @@ const requestHandler = (request: http.IncomingMessage, response: http.ServerResp
     
     // Send the response body
     response.end('Hello, World!\n');
+
+    manageDockerCompose('Apple', '../apple');
+    
     // Extract the path from the request URL
     const path = request.url;
     // Log the path
@@ -23,3 +27,6 @@ const server = http.createServer(requestHandler);
 server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
+
+
+

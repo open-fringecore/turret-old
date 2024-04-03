@@ -1,22 +1,35 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "properties": {
-      "host": {
-        "type": "string",
-        "format": "hostname",
-        "description": "The hostname or IP address"
-      },
-      "port": {
-        "type": "integer",
-        "minimum": 1,
-        "maximum": 65535,
-        "description": "The port number"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "host": {
+            "type": "string"
+          },
+          "port": {
+            "type": "integer"
+          },
+          "timeout": {
+            "type": "integer"
+          },
+          "serviceName": {
+            "type": "string"
+          },
+          "servicePort": {
+            "type": "integer"
+          }
+        },
+        "anyOf": [
+          {"required": ["host"]},
+          {"required": ["port"]}
+        ],
+        "required": ["timeout", "serviceName", "servicePort"]
       }
-    },
-    "oneOf": [
-        { "required": ["host"] },
-        { "required": ["port"] }
-    ],
-    "additionalProperties": false
+    }
+  },
+  "required": ["services"]
 }
