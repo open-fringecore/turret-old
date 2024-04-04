@@ -43,19 +43,21 @@ export async function manageDockerCompose(projectId: string, composeFilePath: st
 
         await runLs('pwd');
 
+        await runLs(`cat ${composeFilePath}/docker-compose.yml`);
+
         console.log(`[${projectId}] Running Docker Compose...`);
        
-        await runCommand(`docker-compose -f ${composeFilePath}/docker-compose.yml up --build`);
+        await runCommand(`docker-compose -f ${composeFilePath}/docker-compose.yml up --build -d`);
 
         
-        console.log(`[${projectId}] Docker Compose setup is up and running. It will be brought down in 5 minutes.`);
+        console.log(`[${projectId}] Docker Compose setup is up and running. It will be brought down in 1 minutes.`);
         
         // Clear existing timeout for this project if set
         if (dockerComposeDownTimeouts[projectId]) {
             clearTimeout(dockerComposeDownTimeouts[projectId]);
         }
 
-        // Set a new timeout for 5 minutes before bringing down the Docker Compose setup
+        // Set a new timeout for 1 minutes before bringing down the Docker Compose setup
         dockerComposeDownTimeouts[projectId] = setTimeout(async () => {
             console.log(`[${projectId}] Bringing down Docker Compose...`);
             await runCommand(`docker-compose -f ${composeFilePath}/docker-compose.yml down`);
@@ -65,6 +67,3 @@ export async function manageDockerCompose(projectId: string, composeFilePath: st
         console.error(`[${projectId}] Failed to manage Docker Compose:`, error);
     }
 }
-
-// Example usage for two projects
-// manageDockerCompose('Apple', '../apple');
